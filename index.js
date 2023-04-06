@@ -1,61 +1,65 @@
-const express=require("express")
-const app=express()
+require("dotenv").config();
+
+
+const express = require("express");
+const app = express();
 const path = require("path");
 const PORT = process.env.PORT || 3500;
-const {logger}=require("./middleware/logevents")
-const cors=require("cors")
+const { logger } = require("./middleware/logevents");
+const { errorHandler } = require("./middleware/errorHandler");
+const verifyJWT = require("././middleware/verifyJWT");
+const cors = require("cors");
+const corsOption = require("./config/corsOption");
+const cookieParser = require("cookie-parser");
+const mongoose=require("mongoose")
+const connectDB=require("./config/dbConn")
 
-app.use(logger)
+
+
+connectDB()
+
+app.use(logger);
 //cross orgin resourcw sharing
+app.use(cors(corsOption));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(cookieParser());
+// Staticpage
+app.use("/", express.static(path.join(__dirname, "/public")));
+app.use("/", require("./routes/root"));
+app.use("/register", require("./routes/register"));
+app.use("/auth", require("./routes/authController"));
+app.use("/refresh", require("./routes/refresh"));
+app.use("/logout", require("./routes/logout"));
+app.use(verifyJWT);
+app.use("/employees", require("./routes/api/employees"));
 
-const whitelist = ['commnet.netlify.app', '127.0.0.1:3500', 'google.com'];
+app.get(
+  "/hello(.html)?",
+  (req, res, next) => {
+    console.log("attempted to load hello.html");
+    next();
+  },
+  (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "index.html"));
+  }
+);
 
-const corsOption={
-    origin: (origin,callback)=>{
-        if(whitelist.indexOf(origin)!=-1){
-            callback(null,true)
-        }else{
-            callback(new Error("Not allowed by CORS"))
-        }
-    },
-    optionsSuccessStatus: 200
-}
+app.all("*", (req, res) => {
+  res.status(404);
+  if (req.accepts("html")) {
+    res.sendFile(path.join(__dirname, "views", "404.html"));
+  } else if (req.accepts("json")) {
+    res.json({ error: "404 Json page not found" });
+  } else if (req.type("txt")) {
+    res.send("TXT not found");
+  }
+});
 
-app.use(cors(corsOption))
+app.use(errorHandler);
 
-app.use(express.urlencoded({extended:false}))
-
-app.use(express.json())
-app.use(express.static(path.join(__dirname,'/public')))
-
-
-
-
-app.get('^/$|/index(.html)?', (req,res)=>{
-    // res.sendFile('./views/index.html' ,{root: __dirname})
-    res.sendFile(path.join(__dirname,"views","index.html"))
-    
+mongoose.connection.once('open',()=>{
+    console.log("Connected to MongoDB")
+    app.listen(PORT, () => console.log(`server on port: ${PORT}`));
 })
-app.get('/new-page(.html)?', (req,res)=>{
-    // res.sendFile('./views/index.html' ,{root: __dirname})
-    res.sendFile(path.join(__dirname,"views","new-page.html"))
-    
-})
-app.get('/redirect(.html)?|/old-page(.html)?', (req,res)=>{
-    // res.sendFile('./views/index.html' ,{root: __dirname})
-   res.redirect(301,"/new-page.html")
-})
-
-app.get('/hello(.html)?',(req,res,next)=>{
-    console.log("attempted to load hello.html")
-    next()
-},(req,res)=>{
-    res.sendFile(path.join(__dirname,"views","index.html"))
-})
-
-app.get('/*', (req,res)=>{
-    res.status(404).sendFile(path.join(__dirname,"views","404.html"))
-})
-
-app.listen(PORT, () => console.log(`server on port: ${PORT}`));
 

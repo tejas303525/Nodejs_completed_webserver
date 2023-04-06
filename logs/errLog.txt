@@ -1,1 +1,13 @@
-2023|03|14	13:00:10	cdb49c21-a878-4304-bcf3-e02f9c5bc05d	TypeError: fsPromises.readFil is not a function
+2023|03|14	13:00:10	cdb49c21-a878-4304-bcf3-e02f9c5bc05d	TypeError: fsPromises.readFil is not a function2023|03|16	16:43:59	c8551d35-281a-4518-8733-9f935ed3906a	Error: Not allowed by CORS2023|03|16	16:56:30	ed5893e3-eec9-4fa0-9883-729c7e163d53	TypeError: res.accepts is not a function
+2023|03|16	16:58:20	8501ae2b-c18d-4204-8262-d3da177d2101	TypeError: res.accepts is not a function
+2023|03|16	16:58:34	31ebdfb1-a65b-4e2d-ba45-8fc2bdc7b177	TypeError: res.accepts is not a function
+2023|03|16	16:58:53	bbadf7af-5383-4de9-a206-b08094146de7	TypeError: res.accepts is not a function
+2023|03|16	16:59:14	ea1e6070-a95b-4ffb-92b9-c8731bbc87ed	TypeError: res.accepts is not a function
+2023|04|05	11:37:50	38c460e1-ab0d-4ffa-b1bd-847987515907	ReferenceError: sendStatus is not defined
+2023|04|05	11:47:17	20621605-e154-48a8-9e8e-577585ee7ae4	ReferenceError: sendStatus is not defined
+2023|04|06	12:36:16	b97a3021-8df9-4898-bf83-ac38ae3c7ed5	SyntaxError: Unexpected token e in JSON at position 0
+2023|04|06	12:36:37	b1ccf352-7d89-4553-8b75-d1b523ca75a4	SyntaxError: Unexpected token e in JSON at position 0
+2023|04|06	12:37:52	cb3ee124-233e-46cb-bf67-7cb162921dd8	SyntaxError: Unexpected token e in JSON at position 0
+2023|04|06	12:38:38	f5945601-af48-4099-9184-ca5692564ab3	SyntaxError: Unexpected token e in JSON at position 0
+2023|04|06	12:40:22	a299a2e5-18da-4151-8d81-d9001efd78db	SyntaxError: Unexpected token e in JSON at position 0
+2023|04|06	12:49:32	6263d0af-7a2a-411d-828a-78d3288559e2	SyntaxError: Unexpected token e in JSON at position 0

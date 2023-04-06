@@ -1,7 +1,6 @@
 const {format}=require("date-fns")
 const {v4:uuid} =require("uuid")
 
-
 const path=require("path")
 const fs=require("fs")
 const fsPromises=require("fs").promises
@@ -22,13 +21,10 @@ const logevents=async (message,logname)=>{
 }
 
 const logger=(req,res,next)=>{
-    logevents(`${req.method}\t${req.header.origin}\t${req.url}\n`,"reqLog.txt")
+    logevents(`${req.method}\t${req.headers.origin}\t${req.url}\n`,"reqLog.txt")
     console.log(req.url)
-    console.log(`${req.method}:${req.url}`)
+    console.log(`${req.method}:${req.path}`)
     next()
 }
 
-module.exports= {logger} 
-// console.log(format(new Date(),'yyyy|MM|dd\tHH:mm:ss'))
-
-// console.log(uuid())
+module.exports= {logger,logevents} 
