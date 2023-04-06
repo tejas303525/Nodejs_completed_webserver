@@ -420,3 +420,8 @@
 2023|04|06	12:40:22	f93b8f99-9c2d-45d4-b07c-7071ac30e8f6	GET	undefined	/employees
 2023|04|06	12:49:17	d0057426-cb58-432e-af18-cb166b820f75	POST	undefined	/auth
 2023|04|06	12:49:32	3a448114-5116-446a-845d-dc7767eebff6	GET	undefined	/employees
+2023|04|06	13:43:13	1154083d-6b7d-4337-805e-87d232979cf9	POST	undefined	/auth
+2023|04|06	13:43:29	eb75eb25-278d-4e8c-ae1c-0426d0aa64e1	GET	undefined	/employees
+2023|04|06	13:43:40	e34da41c-109e-4efe-aebf-5a2ee139af5f	GET	undefined	/employees
+2023|04|06	13:43:53	2574f57e-cb1a-4821-8a2c-e4a6eb2db0cf	POST	undefined	/auth
+2023|04|06	13:44:02	6c8ee2a2-0ada-4183-8ec3-de8ef9520703	GET	undefined	/employees
